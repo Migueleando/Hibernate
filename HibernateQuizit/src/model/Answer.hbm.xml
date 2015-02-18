@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-feb-2015 18:33:03 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.Answer" table="answer" catalog="quizit">
+        <id name="idAnswer" type="int">
+            <column name="idAnswer" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="question" class="model.Question" fetch="select">
+            <column name="idQuestion" not-null="true" />
+        </many-to-one>
+        <property name="text" type="string">
+            <column name="TEXT" length="50" />
+        </property>
+        <property name="isCorrect" type="java.lang.Boolean">
+            <column name="isCorrect" />
+        </property>
+        <set name="users" table="user_answers" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANSWER" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.User">
+                <column name="ID_USER" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

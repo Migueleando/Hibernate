@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-feb-2015 18:33:03 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.Test" table="test" catalog="quizit">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="20" />
+        </property>
+        <property name="date" type="string">
+            <column name="DATE" length="10" />
+        </property>
+        <property name="score" type="java.lang.Integer">
+            <column name="SCORE" />
+        </property>
+        <property name="numberQuestions" type="java.lang.Integer">
+            <column name="NUMBER_QUESTIONS" />
+        </property>
+        <set name="users" table="results" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ID_TEST" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.User">
+                <column name="ID_USER" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="questions" table="test_question" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ID_TEST" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.Question">
+                <column name="ID_QUESTION" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
