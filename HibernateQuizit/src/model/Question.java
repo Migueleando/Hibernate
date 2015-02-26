@@ -1,6 +1,6 @@
 package model;
 
-// Generated 18-feb-2015 18:33:03 by Hibernate Tools 3.4.0.CR1
+// Generated 26-feb-2015 17:12:36 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Question implements java.io.Serializable {
 
     private int idQuestion;
-    private String text;
+    private String questionText;
     private String category;
     private Set answers = new HashSet(0);
     private Set tests = new HashSet(0);
@@ -19,15 +19,16 @@ public class Question implements java.io.Serializable {
     public Question() {
     }
 
-    public Question(int idQuestion, String category) {
+    public Question(int idQuestion, String questionText, String category) {
 	this.idQuestion = idQuestion;
+	this.questionText = questionText;
 	this.category = category;
     }
 
-    public Question(int idQuestion, String text, String category, Set answers,
-	    Set tests) {
+    public Question(int idQuestion, String questionText, String category,
+	    Set answers, Set tests) {
 	this.idQuestion = idQuestion;
-	this.text = text;
+	this.questionText = questionText;
 	this.category = category;
 	this.answers = answers;
 	this.tests = tests;
@@ -41,12 +42,12 @@ public class Question implements java.io.Serializable {
 	this.idQuestion = idQuestion;
     }
 
-    public String getText() {
-	return this.text;
+    public String getQuestionText() {
+	return this.questionText;
     }
 
-    public void setText(String text) {
-	this.text = text;
+    public void setQuestionText(String questionText) {
+	this.questionText = questionText;
     }
 
     public String getCategory() {

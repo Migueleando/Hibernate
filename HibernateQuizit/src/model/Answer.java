@@ -1,6 +1,6 @@
 package model;
 
-// Generated 18-feb-2015 18:33:03 by Hibernate Tools 3.4.0.CR1
+// Generated 26-feb-2015 17:12:36 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +12,7 @@ public class Answer implements java.io.Serializable {
 
     private int idAnswer;
     private Question question;
-    private String text;
+    private String answerText;
     private Boolean isCorrect;
     private Set users = new HashSet(0);
 
@@ -24,11 +24,11 @@ public class Answer implements java.io.Serializable {
 	this.question = question;
     }
 
-    public Answer(int idAnswer, Question question, String text,
+    public Answer(int idAnswer, Question question, String answerText,
 	    Boolean isCorrect, Set users) {
 	this.idAnswer = idAnswer;
 	this.question = question;
-	this.text = text;
+	this.answerText = answerText;
 	this.isCorrect = isCorrect;
 	this.users = users;
     }
@@ -49,12 +49,12 @@ public class Answer implements java.io.Serializable {
 	this.question = question;
     }
 
-    public String getText() {
-	return this.text;
+    public String getAnswerText() {
+	return this.answerText;
     }
 
-    public void setText(String text) {
-	this.text = text;
+    public void setAnswerText(String answerText) {
+	this.answerText = answerText;
     }
 
     public Boolean getIsCorrect() {

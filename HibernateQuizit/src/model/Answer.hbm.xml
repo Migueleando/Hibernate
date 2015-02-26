@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-feb-2015 18:33:03 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 26-feb-2015 17:12:37 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="model.Answer" table="answer" catalog="quizit">
         <id name="idAnswer" type="int">
@@ -11,8 +11,8 @@
         <many-to-one name="question" class="model.Question" fetch="select">
             <column name="idQuestion" not-null="true" />
         </many-to-one>
-        <property name="text" type="string">
-            <column name="TEXT" length="50" />
+        <property name="answerText" type="string">
+            <column name="AnswerTEXT" length="50" />
         </property>
         <property name="isCorrect" type="java.lang.Boolean">
             <column name="isCorrect" />
