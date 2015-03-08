@@ -11,7 +11,7 @@ import java.util.Set;
 public class Answer implements java.io.Serializable {
 
     private int idAnswer;
-    private Question question;
+    private Question idQuestion;
     private String answerText;
     private Boolean isCorrect;
     private Set users = new HashSet(0);
@@ -19,15 +19,15 @@ public class Answer implements java.io.Serializable {
     public Answer() {
     }
 
-    public Answer(int idAnswer, Question question) {
+    public Answer(int idAnswer, Question idQuestion) {
 	this.idAnswer = idAnswer;
-	this.question = question;
+	this.idQuestion = idQuestion;
     }
 
-    public Answer(int idAnswer, Question question, String answerText,
+    public Answer(int idAnswer, Question idQuestion, String answerText,
 	    Boolean isCorrect, Set users) {
 	this.idAnswer = idAnswer;
-	this.question = question;
+	this.idQuestion = idQuestion;
 	this.answerText = answerText;
 	this.isCorrect = isCorrect;
 	this.users = users;
@@ -42,11 +42,11 @@ public class Answer implements java.io.Serializable {
     }
 
     public Question getQuestion() {
-	return this.question;
+	return this.idQuestion;
     }
 
-    public void setQuestion(Question question) {
-	this.question = question;
+    public void setQuestion(Question idQuestion) {
+	this.idQuestion = idQuestion;
     }
 
     public String getAnswerText() {
