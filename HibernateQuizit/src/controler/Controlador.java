@@ -44,27 +44,34 @@ public class Controlador {
 	vista.getBtnMostrar().addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-		
-		if (vista.getTextIdPregunta().getText() != null) {
-		    String idQuestion = vista.getTextIdPregunta().getText();
-		    
-		    List<Answer> listaRespuestas = modelo
-			    .getAnswerByIdQuestion(idQuestion);
-		    
-		    Question question = modelo
-			    .getQuestionByIdQuestion(idQuestion);
-		    
-		    vista.getTextPregunta().setText(question.toString());
-		    vista.getTextResp_1().setText(
-			    listaRespuestas.get(0).toString());
-		    vista.getTextResp_2().setText(
-			    listaRespuestas.get(1).toString());
-		    vista.getTextResp_3().setText(
-			    listaRespuestas.get(2).toString());
-		    vista.getTextResp_4().setText(
-			    listaRespuestas.get(3).toString());
+
+		if (vista.getTextIdPregunta().getText().isEmpty()) {
+		    JOptionPane.showMessageDialog(null,
+			    "Introduce un Id para consultar!");
+
 		} else {
-		    JOptionPane.showMessageDialog(null, "No existe ese ID!");
+		    String idQuestion = vista.getTextIdPregunta().getText();
+		    int id = Integer.parseInt(idQuestion);
+		    
+		    if (id <= modelo.getLastQuestion().getIdQuestion()) {
+			List<Answer> listaRespuestas = modelo
+				.getAnswerByIdQuestion(idQuestion);
+			Question question = modelo
+				.getQuestionByIdQuestion(idQuestion);
+			vista.getTextPregunta().setText(question.toString());
+			vista.getTextResp_1().setText(
+				listaRespuestas.get(0).toString());
+			vista.getTextResp_2().setText(
+				listaRespuestas.get(1).toString());
+			vista.getTextResp_3().setText(
+				listaRespuestas.get(2).toString());
+			vista.getTextResp_4().setText(
+				listaRespuestas.get(3).toString());
+		    }else{
+			JOptionPane.showMessageDialog(null,
+				    "No hay datos con ese ID");
+		    }
+
 		}
 
 	    }
@@ -84,7 +91,7 @@ public class Controlador {
     }
 
     public boolean camposBlanco() {
-	if (vista.getTextCat().getText().isEmpty()
+	if (vista.getComboBox().getToolTipText().isEmpty()
 		|| vista.getTextPregunta().getText().isEmpty()
 		|| vista.getTextResp_1().getText().isEmpty()
 		|| vista.getTextResp_2().getText().isEmpty()
@@ -104,7 +111,7 @@ public class Controlador {
 	String textQuestion, category;
 	idQuestion = modelo.getLastQuestion().getIdQuestion() + 1;
 	textQuestion = vista.getTextPregunta().getText();
-	category = vista.getTextCat().getText();
+	category = vista.getComboBox().getToolTipText().toString();
 	modelo.addQuestion(idQuestion, textQuestion, category);
     }
 
@@ -130,7 +137,7 @@ public class Controlador {
 	vista.getTextResp_4().setText("");
 	vista.getTextResp_2().setText("");
 	vista.getTextResp_3().setText("");
-	vista.getTextCat().setText("");
+	vista.getComboBox().setToolTipText("");
 	vista.getChckbxCheckbox1().setSelected(false);
 	vista.getChckbxCheckbox2().setSelected(false);
 	vista.getChckbxCheckbox3().setSelected(false);

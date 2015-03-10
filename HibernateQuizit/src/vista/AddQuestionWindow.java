@@ -2,18 +2,32 @@ package vista;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
+
+import javax.swing.ComboBoxEditor;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Component;
+
 import javax.swing.JCheckBox;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+
+import java.awt.Choice;
+
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class AddQuestionWindow {
 
@@ -31,7 +45,6 @@ public class AddQuestionWindow {
     private JPanel panel_5;
     private JPanel panel_7;
     private JLabel lblNewLabel_2;
-    private JTextField textCat;
     private JPanel panel_6;
     private JCheckBox chckbxCheckbox1;
     private JCheckBox chckbxCheckbox2;
@@ -45,6 +58,7 @@ public class AddQuestionWindow {
     private JLabel lblIdAConsultar;
     private JTextField textIdPregunta;
     private JPanel panel_9;
+    private JComboBox comboBox;
 
     /**
      * Create the application.
@@ -123,10 +137,10 @@ public class AddQuestionWindow {
 	lblNewLabel_2 = new JLabel("Categoria");
 	lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
 	panel_5.add(lblNewLabel_2);
-
-	textCat = new JTextField();
-	panel_5.add(textCat);
-	textCat.setColumns(10);
+	
+	comboBox = new JComboBox();
+	comboBox.setEditable(true);
+	panel_5.add(comboBox);
 
 	panel_6 = new JPanel();
 	panel_5.add(panel_6);
@@ -316,12 +330,12 @@ public class AddQuestionWindow {
 	this.lblNewLabel_2 = lblNewLabel_2;
     }
 
-    public JTextField getTextCat() {
-	return textCat;
+    public JComboBox getComboBox() {
+        return comboBox;
     }
 
-    public void setTextCat(JTextField textCat) {
-	this.textCat = textCat;
+    public void setComboBox(JComboBox comboBox) {
+        this.comboBox = comboBox;
     }
 
     public JPanel getPanel_6() {

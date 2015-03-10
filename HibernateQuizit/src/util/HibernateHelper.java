@@ -1,6 +1,5 @@
 package util;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.Answer;
@@ -17,8 +16,6 @@ public class HibernateHelper {
 
     private SessionFactory sesion;
     private AddQuestionWindow vista;
-
-    // private Answer answer;
 
     public HibernateHelper() {
 	sesion = SessionFactoryUtil.getSessionFactory();
@@ -78,7 +75,7 @@ public class HibernateHelper {
 
     }
 
-    public List<Answer> getAnswerByIdQuestion(String idQuestion) {
+    public List<Answer> getAnswerByIdQuestion (String idQuestion) {
 	List<Answer> answers;
 	Session session = sesion.openSession();
 	Query query = session.createQuery("from Answer where idQuestion = "
