@@ -181,7 +181,6 @@ public class AddQuestionWindow {
     }
 
     public JTextField getTextPregunta() {
-	System.out.println(textPregunta);
 	return textPregunta;
     }
 
@@ -340,5 +339,4 @@ public class AddQuestionWindow {
     public void setBtnInsertar(JButton btnInsertar) {
 	this.btnInsertar = btnInsertar;
     }
-
 }

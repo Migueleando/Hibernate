@@ -21,26 +21,18 @@ public class HibernateHelper {
 
     public void addQuestion(int idQuestion, String QuestionTEXT, String category) {
 	Session session = sesion.openSession();	
-	System.out.println("sesion abierta");
 	Transaction tx = session.beginTransaction();
-	System.out.println("transaccion creada");
 	Question question = new Question(idQuestion, QuestionTEXT, category, null, null);
-	System.out.println("pregunta");
 	session.save(question);
-	System.out.println("pregunta insertada");
 	tx.commit();
-	System.out.println("commit");
 	session.close();
     }
 
     public void addAnswer(int idAnswer, Question idQuestion, String text,
 	    boolean iscorrect) {
 	Session session = sesion.openSession();
-	System.out.println("sesion abierta");
 	Transaction tx = session.beginTransaction();
-	System.out.println("transaccion creada");
 	Answer answer = new Answer(idAnswer, idQuestion, text, iscorrect, null);
-	System.out.println("respuesta");
 	session.save(answer);
 	tx.commit();
 	session.close();
@@ -49,6 +41,7 @@ public class HibernateHelper {
     public Question getLastQuestion() {
 	Session session = sesion.openSession();
 	Query query = session.createQuery("from Question order by idQuestion DESC");
+	query.setMaxResults(1);
 	Question last = (Question) query.uniqueResult();
 	session.close();
 	return last;
@@ -57,6 +50,7 @@ public class HibernateHelper {
     public Answer getLastAnswer(){
 	Session session = sesion.openSession();
 	Query query = session.createQuery("from Answer order by idAnswer DESC");
+	query.setMaxResults(1);
 	Answer last = (Answer) query.uniqueResult();
 	session.close();
 	return last;

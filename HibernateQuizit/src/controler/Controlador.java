@@ -28,11 +28,13 @@ public class Controlador {
 	vista.getBtnInsertar().addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent e) {
 		if (camposBlanco()) {
-		    System.out.println("no hay campos en blanco");
 		    nuevaPregunta();
 		    System.out.println("pregunta añadida");
 		    nuevaRespuesta();
 		    System.out.println("respuesta añadida");
+		    JOptionPane.showMessageDialog(null,
+			    "Datos Insertados!");
+		    
 		}
 	    }
 	});
@@ -69,26 +71,36 @@ public class Controlador {
 	int idQuestion;
 	String textQuestion, category;
 	idQuestion = modelo.getLastQuestion().getIdQuestion() + 1;
-	//System.out.println(idQuestion);
-	textQuestion = vista.getTextPregunta().toString();
-	//System.out.println(textQuestion);
-	category = vista.getTextCat().toString();
-	//System.out.println(category);
+	textQuestion = vista.getTextPregunta().getText();
+	category = vista.getTextCat().getText();
 	modelo.addQuestion(idQuestion, textQuestion, category);
     }
 
     public void nuevaRespuesta() {
 	modelo.addAnswer(modelo.getLastAnswer().getIdAnswer() + 1,
-		modelo.getLastQuestion(), vista.getTextResp_1().toString(),
+		modelo.getLastQuestion(), vista.getTextResp_1().getText(),
 		vista.getChckbxCheckbox1().isSelected());
 	modelo.addAnswer(modelo.getLastAnswer().getIdAnswer() + 1,
-		modelo.getLastQuestion(), vista.getTextResp_2().toString(),
+		modelo.getLastQuestion(), vista.getTextResp_2().getText(),
 		vista.getChckbxCheckbox2().isSelected());
 	modelo.addAnswer(modelo.getLastAnswer().getIdAnswer() + 1,
-		modelo.getLastQuestion(), vista.getTextResp_3().toString(),
+		modelo.getLastQuestion(), vista.getTextResp_3().getText(),
 		vista.getChckbxCheckbox3().isSelected());
 	modelo.addAnswer(modelo.getLastAnswer().getIdAnswer() + 1,
-		modelo.getLastQuestion(), vista.getTextResp_4().toString(),
+		modelo.getLastQuestion(), vista.getTextResp_4().getText(),
 		vista.getCheckBox4().isSelected());
+    }
+    
+    public void limpiarCampos(){
+	vista.setTextPregunta(null);
+	vista.setTextResp_1(null);
+	vista.setTextResp_2(null);
+	vista.setTextResp_3(null);
+	vista.setTextResp_4(null);
+	vista.setTextCat(null);
+	vista.setChckbxCheckbox1(null);
+	vista.setChckbxCheckbox2(null);
+	vista.setChckbxCheckbox3(null);
+	vista.setCheckBox4(null);
     }
 }
