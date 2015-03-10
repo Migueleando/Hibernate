@@ -73,4 +73,11 @@ public class Answer implements java.io.Serializable {
 	this.users = users;
     }
 
+    @Override
+    public String toString() {
+	return answerText;
+    }
+    
+    
+
 }

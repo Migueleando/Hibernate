@@ -3,12 +3,12 @@ package controler;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.xml.bind.ParseConversionEvent;
 
-import model.Test;
+import model.Answer;
+import model.Question;
 import util.HibernateHelper;
 import vista.AddQuestionWindow;
 
@@ -22,6 +22,7 @@ public class Controlador {
 	vista = new AddQuestionWindow();
 	cargarVista();
 	addListenerBotonInsertar();
+	addListenerBotonMostrar();
     }
 
     private void addListenerBotonInsertar() {
@@ -32,10 +33,40 @@ public class Controlador {
 		    System.out.println("pregunta añadida");
 		    nuevaRespuesta();
 		    System.out.println("respuesta añadida");
-		    JOptionPane.showMessageDialog(null,
-			    "Datos Insertados!");
-		    
+		    limpiarCampos();
+		    JOptionPane.showMessageDialog(null, "Datos Insertados!");
 		}
+	    }
+	});
+    }
+
+    private void addListenerBotonMostrar() {
+	vista.getBtnMostrar().addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		
+		if (vista.getTextIdPregunta().getText() != null) {
+		    String idQuestion = vista.getTextIdPregunta().getText();
+		    
+		    List<Answer> listaRespuestas = modelo
+			    .getAnswerByIdQuestion(idQuestion);
+		    
+		    Question question = modelo
+			    .getQuestionByIdQuestion(idQuestion);
+		    
+		    vista.getTextPregunta().setText(question.toString());
+		    vista.getTextResp_1().setText(
+			    listaRespuestas.get(0).toString());
+		    vista.getTextResp_2().setText(
+			    listaRespuestas.get(1).toString());
+		    vista.getTextResp_3().setText(
+			    listaRespuestas.get(2).toString());
+		    vista.getTextResp_4().setText(
+			    listaRespuestas.get(3).toString());
+		} else {
+		    JOptionPane.showMessageDialog(null, "No existe ese ID!");
+		}
+
 	    }
 	});
     }
@@ -67,6 +98,7 @@ public class Controlador {
 	}
     }
 
+    // Añadir automáticamente el id de la pregunta añadida
     public void nuevaPregunta() {
 	int idQuestion;
 	String textQuestion, category;
@@ -76,6 +108,7 @@ public class Controlador {
 	modelo.addQuestion(idQuestion, textQuestion, category);
     }
 
+    // Añadir automáticamente el id de las respuestas añadidas
     public void nuevaRespuesta() {
 	modelo.addAnswer(modelo.getLastAnswer().getIdAnswer() + 1,
 		modelo.getLastQuestion(), vista.getTextResp_1().getText(),
@@ -90,17 +123,17 @@ public class Controlador {
 		modelo.getLastQuestion(), vista.getTextResp_4().getText(),
 		vista.getCheckBox4().isSelected());
     }
-    
-    public void limpiarCampos(){
-	vista.setTextPregunta(null);
-	vista.setTextResp_1(null);
-	vista.setTextResp_2(null);
-	vista.setTextResp_3(null);
-	vista.setTextResp_4(null);
-	vista.setTextCat(null);
-	vista.setChckbxCheckbox1(null);
-	vista.setChckbxCheckbox2(null);
-	vista.setChckbxCheckbox3(null);
-	vista.setCheckBox4(null);
+
+    public void limpiarCampos() {
+	vista.getTextPregunta().setText("");
+	vista.getTextResp_1().setText("");
+	vista.getTextResp_4().setText("");
+	vista.getTextResp_2().setText("");
+	vista.getTextResp_3().setText("");
+	vista.getTextCat().setText("");
+	vista.getChckbxCheckbox1().setSelected(false);
+	vista.getChckbxCheckbox2().setSelected(false);
+	vista.getChckbxCheckbox3().setSelected(false);
+	vista.getCheckBox4().setSelected(false);
     }
 }

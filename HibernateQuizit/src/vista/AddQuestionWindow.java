@@ -38,6 +38,13 @@ public class AddQuestionWindow {
     private JCheckBox chckbxCheckbox3;
     private JCheckBox checkBox4;
     private JButton btnInsertar;
+    private JPanel panel_8;
+    private JButton btnMostrar;
+    private JButton btnNewButton_1;
+    private JButton btnNewButton_2;
+    private JLabel lblIdAConsultar;
+    private JTextField textIdPregunta;
+    private JPanel panel_9;
 
     /**
      * Create the application.
@@ -166,10 +173,35 @@ public class AddQuestionWindow {
 
 	panel_7 = new JPanel();
 	panel_2.add(panel_7);
-	panel_7.setLayout(new BorderLayout(0, 0));
-
-	btnInsertar = new JButton("Insertar");
-	panel_2.add(btnInsertar);
+	panel_7.setLayout(new GridLayout(2, 4, 0, 0));
+	
+	lblIdAConsultar = new JLabel("Id a consultar");
+	lblIdAConsultar.setHorizontalAlignment(SwingConstants.RIGHT);
+	panel_7.add(lblIdAConsultar);
+	
+	textIdPregunta = new JTextField();
+	textIdPregunta.setToolTipText("");
+	panel_7.add(textIdPregunta);
+	textIdPregunta.setColumns(10);
+	
+	panel_9 = new JPanel();
+	panel_7.add(panel_9);
+	
+	panel_8 = new JPanel();
+	panel_2.add(panel_8);
+		panel_8.setLayout(new GridLayout(0, 2, 0, 0));
+	
+		btnInsertar = new JButton("Insertar");
+		panel_8.add(btnInsertar);
+		
+		btnMostrar = new JButton("Mostrar");
+		panel_8.add(btnMostrar);
+		
+		btnNewButton_1 = new JButton("New button");
+		panel_8.add(btnNewButton_1);
+		
+		btnNewButton_2 = new JButton("New button");
+		panel_8.add(btnNewButton_2);
     }
 
     public JFrame getFrame() {
@@ -339,4 +371,21 @@ public class AddQuestionWindow {
     public void setBtnInsertar(JButton btnInsertar) {
 	this.btnInsertar = btnInsertar;
     }
+
+    public JButton getBtnMostrar() {
+        return btnMostrar;
+    }
+
+    public void setBtnMostrar(JButton btnMostrar) {
+        this.btnMostrar = btnMostrar;
+    }
+
+    public JTextField getTextIdPregunta() {
+        return textIdPregunta;
+    }
+
+    public void setTextIdPregunta(JTextField textIdPregunta) {
+        this.textIdPregunta = textIdPregunta;
+    }
+    
 }

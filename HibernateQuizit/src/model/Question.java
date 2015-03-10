@@ -74,4 +74,11 @@ public class Question implements java.io.Serializable {
 	this.tests = tests;
     }
 
+    @Override
+    public String toString() {
+	return questionText;
+    }
+    
+    
+
 }
