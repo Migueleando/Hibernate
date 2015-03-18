@@ -44,20 +44,18 @@ public class Controlador {
 	vista.getBtnMostrar().addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-
 		if (vista.getTextIdPregunta().getText().isEmpty()) {
 		    JOptionPane.showMessageDialog(null,
 			    "Introduce un Id para consultar!");
-
 		} else {
 		    String idQuestion = vista.getTextIdPregunta().getText();
 		    int id = Integer.parseInt(idQuestion);
-		    
+		    List<Answer> listaRespuestas = modelo
+			    .getAnswerByIdQuestion(id);
+		    Question question = modelo
+			    .getQuestionByIdQuestion(idQuestion);
+
 		    if (id <= modelo.getLastQuestion().getIdQuestion()) {
-			List<Answer> listaRespuestas = modelo
-				.getAnswerByIdQuestion(idQuestion);
-			Question question = modelo
-				.getQuestionByIdQuestion(idQuestion);
 			vista.getTextPregunta().setText(question.toString());
 			vista.getTextResp_1().setText(
 				listaRespuestas.get(0).toString());
@@ -67,13 +65,50 @@ public class Controlador {
 				listaRespuestas.get(2).toString());
 			vista.getTextResp_4().setText(
 				listaRespuestas.get(3).toString());
-		    }else{
+			vista.getComboBox().addItem(
+				question.getCategory().toString());
+		    } else {
 			JOptionPane.showMessageDialog(null,
-				    "No hay datos con ese ID");
+				"No hay datos con ese ID");
 		    }
 
 		}
 
+	    }
+	});
+    }
+
+    private void addListenerBotonActualizar() {
+	vista.getBtnActualizar().addActionListener(new ActionListener() {
+
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		if (camposBlanco()) {
+		    String idQuestion;
+		    String textQuestion, category;
+		    idQuestion = vista.getTextIdPregunta().getText();
+		    textQuestion = vista.getTextPregunta().getText();
+		    category = vista.getComboBox().getToolTipText().toString();
+		    int id = Integer.parseInt(idQuestion);
+		    modelo.updateAnswer(modelo.getLastAnswer().getIdAnswer(),
+			    modelo.getLastQuestion(), vista.getTextResp_1()
+				    .getText(), vista.getChckbxCheckbox1()
+				    .isSelected());
+		    modelo.updateAnswer(modelo.getLastAnswer().getIdAnswer(),
+			    modelo.getLastQuestion(), vista.getTextResp_2()
+				    .getText(), vista.getChckbxCheckbox2()
+				    .isSelected());
+		    modelo.updateAnswer(modelo.getLastAnswer().getIdAnswer(),
+			    modelo.getLastQuestion(), vista.getTextResp_3()
+				    .getText(), vista.getChckbxCheckbox3()
+				    .isSelected());
+		    modelo.updateAnswer(modelo.getLastAnswer().getIdAnswer(),
+			    modelo.getLastQuestion(), vista.getTextResp_4()
+				    .getText(), vista.getCheckBox4()
+				    .isSelected());
+		    modelo.updateQuestion(id, textQuestion, category);
+
+		}
 	    }
 	});
     }

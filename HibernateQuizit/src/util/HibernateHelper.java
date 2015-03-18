@@ -72,16 +72,79 @@ public class HibernateHelper {
 	question = (Question) query.uniqueResult();
 	session.close();
 	return question;
-
     }
 
-    public List<Answer> getAnswerByIdQuestion (String idQuestion) {
+    public List<Answer> getAnswerByIdQuestion(int id) {
 	List<Answer> answers;
 	Session session = sesion.openSession();
 	Query query = session.createQuery("from Answer where idQuestion = "
-		+ idQuestion);
+		+ id);
 	answers = query.list();
 	session.close();
 	return answers;
+    }
+
+    public void updateQuestion(int idQuestion, String QuestionTEXT, String category) {
+	Question question = new Question();
+	Session session = sesion.openSession();
+	Transaction t = session.beginTransaction();
+	Question questionNew = (Question) session.get(Question.class,
+		question.getIdQuestion());
+	questionNew.setIdQuestion(question.getIdQuestion());
+	questionNew.setQuestionText(question.getQuestionText());
+	questionNew.setCategory(question.getCategory());
+
+	if (questionNew != null) {
+	    session.update(questionNew);
+	}
+	t.commit();
+	session.close();
+    }
+
+    public void updateAnswer(int idAnswer, Question idQuestion, String text,
+	    boolean iscorrect) {
+	Answer answer = new Answer();
+	Session session = sesion.openSession();
+	Transaction t = session.beginTransaction();
+	Answer answerNew = (Answer) session.get(Answer.class,
+		answer.getIdAnswer());
+	answerNew.setIdAnswer(answer.getIdAnswer());
+	answerNew.setAnswerText(answer.getAnswerText());
+	answerNew.setQuestion(answer.getQuestion());
+	answerNew.setIsCorrect(answer.getIsCorrect());
+
+	if (answerNew != null) {
+	    session.update(answerNew);
+	}
+	t.commit();
+	session.close();
+    }
+
+    public void deleteQuestion(int id) {
+	Session session = sesion.openSession();
+	Transaction tx = session.beginTransaction();
+	Question question = (Question) session.get(Question.class, (int) id);
+	List<Answer> answer = getAnswerByIdQuestion(id);
+
+	for (Answer a : answer) {
+	    int idAnswer = a.getIdAnswer();
+	    deleteAnswer(idAnswer);
+	}
+	if (question != null) {
+	    session.delete(question);
+	    tx.commit();
+	}
+	session.close();
+    }
+
+    public void deleteAnswer(int id) {
+	Session session = sesion.openSession();
+	Transaction tx = session.beginTransaction();
+	Answer answer = (Answer) session.get(Answer.class, (int) id);
+	if (answer != null) {
+	    session.delete(answer);
+	    tx.commit();
+	}
+	session.close();
     }
 }

@@ -53,12 +53,12 @@ public class AddQuestionWindow {
     private JButton btnInsertar;
     private JPanel panel_8;
     private JButton btnMostrar;
-    private JButton btnNewButton_1;
-    private JButton btnNewButton_2;
+    private JButton btnBorrar;
+    private JButton btnActualizar;
     private JLabel lblIdAConsultar;
     private JTextField textIdPregunta;
     private JPanel panel_9;
-    private JComboBox comboBox;
+    private JComboBox comboBoxCat;
 
     /**
      * Create the application.
@@ -138,9 +138,9 @@ public class AddQuestionWindow {
 	lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
 	panel_5.add(lblNewLabel_2);
 	
-	comboBox = new JComboBox();
-	comboBox.setEditable(true);
-	panel_5.add(comboBox);
+	comboBoxCat = new JComboBox();
+	comboBoxCat.setEditable(true);
+	panel_5.add(comboBoxCat);
 
 	panel_6 = new JPanel();
 	panel_5.add(panel_6);
@@ -211,11 +211,11 @@ public class AddQuestionWindow {
 		btnMostrar = new JButton("Mostrar");
 		panel_8.add(btnMostrar);
 		
-		btnNewButton_1 = new JButton("New button");
-		panel_8.add(btnNewButton_1);
+		btnBorrar = new JButton("Borrar");
+		panel_8.add(btnBorrar);
 		
-		btnNewButton_2 = new JButton("New button");
-		panel_8.add(btnNewButton_2);
+		btnActualizar = new JButton("Actualizar");
+		panel_8.add(btnActualizar);
     }
 
     public JFrame getFrame() {
@@ -331,11 +331,11 @@ public class AddQuestionWindow {
     }
 
     public JComboBox getComboBox() {
-        return comboBox;
+        return comboBoxCat;
     }
 
     public void setComboBox(JComboBox comboBox) {
-        this.comboBox = comboBox;
+        this.comboBoxCat = comboBox;
     }
 
     public JPanel getPanel_6() {
@@ -401,5 +401,21 @@ public class AddQuestionWindow {
     public void setTextIdPregunta(JTextField textIdPregunta) {
         this.textIdPregunta = textIdPregunta;
     }
+
+    public JButton getBtnBorrar() {
+        return btnBorrar;
+    }
+
+    public void setBtnBorrar(JButton btnBorrar) {
+        this.btnBorrar = btnBorrar;
+    }
+
+    public JButton getBtnActualizar() {
+        return btnActualizar;
+    }
+
+    public void setBtnActualizar(JButton btnActualizar) {
+        this.btnActualizar = btnActualizar;
+    }   
     
 }
